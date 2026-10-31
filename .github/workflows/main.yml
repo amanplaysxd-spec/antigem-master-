@@ -1,4 +1,3 @@
-
 name: Build AntiGem APKs
 
 on:
@@ -36,8 +35,8 @@ jobs:
           go-version: '1.23'
           cache-dependency-path: agy_ide_bridge/go.sum
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Accept Android SDK Licenses
+        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -56,4 +55,3 @@ jobs:
             app/build/outputs/apk/termux/debug/*.apk
           if-no-files-found: error
           retention-days: 14
-          
